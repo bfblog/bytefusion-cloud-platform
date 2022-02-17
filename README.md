@@ -1,2 +1,8 @@
-# bytefusion-cloud-platform
-Basic functions for container based environments
+# efk-stack
+
+
+```
+> wsl -d docker-desktop
+> sysctl -w vm.max_map_count=262144
+```
+
