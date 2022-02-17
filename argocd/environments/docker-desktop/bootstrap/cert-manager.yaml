@@ -13,6 +13,6 @@ spec:
   source:
     path: third-party/cert-manager/v1.7.1
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: work
+    targetRevision: HEAD
   syncPolicy:
     automated: {}
