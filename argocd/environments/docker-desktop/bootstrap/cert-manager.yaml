@@ -1,19 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-app
+  name: cert-manager
   namespace: argocd
   labels:
     group: security
-    app: cert-manager
 spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: applications/cert-manager
-    repoURL: https://github.com/bfblog/efk-stack.git
+    path: third-party/cert-manager/v1.7.1
+    repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
     targetRevision: work
   syncPolicy:
     automated: {}
