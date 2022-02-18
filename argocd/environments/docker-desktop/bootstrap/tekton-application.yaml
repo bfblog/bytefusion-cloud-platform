@@ -16,8 +16,8 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: HEAD
-    path: argocd/environments/docker-desktop/logging
+    targetRevision: work
+    path: argocd/environments/docker-desktop/tekton
 
     # directory
     directory:

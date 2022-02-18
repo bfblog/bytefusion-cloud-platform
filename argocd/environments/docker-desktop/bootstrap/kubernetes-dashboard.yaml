@@ -20,3 +20,5 @@ spec:
         value: kubernetes-dashboard.127.0.0.1.nip.io
       - name: security.enabled
         value: "false"
+  syncPolicy:
+    automated: {}
