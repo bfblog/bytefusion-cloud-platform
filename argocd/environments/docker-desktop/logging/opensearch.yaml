@@ -25,7 +25,7 @@ spec:
       - name: ingress.host[0]
         value: elasticsearch.127.0.0.1.nip.io
       - name: persistence.storageClass
-        value: "-"
+        value: ""
       values: |
         extraInitContainers: 
           - name: init-sysctl
