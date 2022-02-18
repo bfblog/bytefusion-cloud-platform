@@ -19,7 +19,5 @@ spec:
       values: |-
         ingress:
           annotations:
-            nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     repoURL: https://bfblog.github.io/helm-charts/
     targetRevision: 0.4.0
