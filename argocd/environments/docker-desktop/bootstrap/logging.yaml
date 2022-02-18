@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
     targetRevision: HEAD
-    path: applications/environments/docker-desktop/logging
+    path: argocd/environments/docker-desktop/logging
 
     # directory
     directory:
