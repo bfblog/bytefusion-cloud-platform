@@ -16,7 +16,7 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: HEAD
+    targetRevision: work
     path: argocd/environments/docker-desktop/logging
 
     # directory
