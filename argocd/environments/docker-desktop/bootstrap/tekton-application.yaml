@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: logging
+  name: tekton-app
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   labels:
-    app-of-apps: logging
+    app-of-apps: tekton
   # Add a this finalizer ONLY if you want these to cascade delete.
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -16,8 +16,8 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: HEAD
-    path: argocd/environments/docker-desktop/logging
+    targetRevision: work
+    path: argocd/environments/docker-desktop/tekton
 
     # directory
     directory:
