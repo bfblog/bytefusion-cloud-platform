@@ -1,40 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tekton-app
-  # You'll usually want to add your resources to the argocd namespace.
+  name: tekton
   namespace: argocd
-  labels:
-    app-of-apps: tekton
-  # Add a this finalizer ONLY if you want these to cascade delete.
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  # The project the application belongs to.
-  project: default
-
-  # Source of the application manifests
-  source:
-    repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: work
-    path: argocd/environments/docker-desktop/tekton
-
-    # directory
-    directory:
-      recurse: true
-      
-  # Destination cluster and namespace to deploy the application
   destination:
+    namespace: tekton-pipelines
     server: https://kubernetes.default.svc
-    namespace: argocd
-
-  # Ignore differences at the specified json pointers
-  ignoreDifferences:
-  - group: apps
-    kind: Deployment
-    jsonPointers:
-    - /spec/replicas
+  project: default
+  source:
+    chart: tekton
+    repoURL: https://bfblog.github.io/helm-charts
+    targetRevision: 0.7.0
+    helm:
+      parameters:
+      - name: ingress.enabled
+        value: "true"
+      - name: ingress.hosts[0]
+        value: kubernetes-dashboard.127.0.0.1.nip.io
   syncPolicy:
     automated: {}
-    syncOptions:
-    - CreateNamespace=true
