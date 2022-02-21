@@ -20,4 +20,4 @@ spec:
         ingress:
           annotations:
     repoURL: https://bfblog.github.io/helm-charts/
-    targetRevision: 0.4.0
+    targetRevision: 0.7.0
