@@ -18,6 +18,5 @@ spec:
         value: "true"
       - name: ingress.hosts[0]
         value: tekton-dashboard.127.0.0.1.nip.io
-        value: kubernetes-dashboard.127.0.0.1.nip.io
   syncPolicy:
     automated: {}
