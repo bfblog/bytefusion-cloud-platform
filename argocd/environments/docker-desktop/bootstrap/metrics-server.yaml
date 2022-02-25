@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tekton
+  name: metrics-server
   namespace: argocd
-  labels:
-    group: security
 spec:
   destination:
-    namespace: default
+    namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: third-party/tekton/v0.31.0
-    repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: work
+    chart: metrics-server
+    helm:
+      parameters:
+    repoURL: https://kubernetes-sigs.github.io/metrics-server/
+    targetRevision: 3.8.1
   syncPolicy:
     automated: {}
