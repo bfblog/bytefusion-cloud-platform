@@ -14,5 +14,10 @@ spec:
       parameters:
     repoURL: https://kubernetes-sigs.github.io/metrics-server/
     targetRevision: 3.8.1
+    parameters:
+      - name: ingress.enabled
+        value: |
+          args:
+            - '--kubelet-insecure-tls'
   syncPolicy:
     automated: {}
