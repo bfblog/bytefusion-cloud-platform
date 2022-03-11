@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluentd
+  namespace: argocd
+spec:
+  # The project the application belongs to.
+  project: default
+
+  # Source of the application manifests
+  source:
+    repoURL: https://bitbucket.materna.de/scm/gaiax/roms-data-factory.git
+    targetRevision: feature/logging
+    path: environment/docker-desktop/kubernetes/logging
+
+    # directory
+    directory:
+      recurse: true
+      
+  # Destination cluster and namespace to deploy the application
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  # Ignore differences at the specified json pointers
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
