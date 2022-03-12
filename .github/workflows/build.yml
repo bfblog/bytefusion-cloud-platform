@@ -46,8 +46,9 @@ jobs:
     - name: Build Docker image
       run: docker build -t bfblog/fluentd:latest -t bfblog/fluentd:${GITHUB_SHA::8} docker/fluentd
       
-    - name: scan docker image
-      run: docker scan bfblog/fluentd:latest
+    - uses: azure/container-scan@v0
+      with:
+        image-name: bfblog/fluentd:latest
     
     - name: Publish Docker image
       run: docker push bfblog/fluentd:latest 
