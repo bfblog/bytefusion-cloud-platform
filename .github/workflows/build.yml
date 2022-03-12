@@ -27,6 +27,9 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
 
+    - name: Branch name
+      run: echo running on branch ${GITHUB_REF##*/}
+
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
@@ -46,9 +49,9 @@ jobs:
     - name: Build Docker image
       run: docker build -t bfblog/fluentd:latest -t bfblog/fluentd:${GITHUB_SHA::8} docker/fluentd
       
-    - uses: azure/container-scan@v0
-      with:
-        image-name: bfblog/fluentd:latest
+#    - uses: azure/container-scan@v0
+#      with:
+#        image-name: bfblog/fluentd:latest
     
     - name: Publish Docker image
       run: docker push bfblog/fluentd:latest 
