@@ -44,7 +44,7 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     
     - name: Build Docker image
-      run: docker build -t bfblog/fluentd:latest -t bfblog/fluetd:${GITHUB_SHA::8} .
+      run: docker build -t bfblog/fluentd:latest -t bfblog/fluentd:${GITHUB_SHA::8} docker/fluentd
     
     - name: Publish Docker image
       run: docker push bfblog/fluentd:latest 
