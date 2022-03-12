@@ -56,7 +56,12 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     
     - name: Build Docker image
-      run: docker build -t bfblog/fluentd:latest -t bfblog/fluentd:${GITHUB_SHA::8} docker/fluentd
+      run: |
+        docker build \
+          --tag bfblog/fluentd:latest \
+          --tag bfblog/fluentd:${GITHUB_SHA::8} \
+          --label org.opencontainers.image.created=${{ steps.shell.outputs.date }} \
+          docker/fluentd
       
 #    - uses: azure/container-scan@v0
 #      with:
