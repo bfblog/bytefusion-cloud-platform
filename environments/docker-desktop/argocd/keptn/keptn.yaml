@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keptn-core
+  namespace: argocd
+spec:
+  destination:
+    namespace: keptn
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: keptn
+    repoURL: https://charts.keptn.sh
+    targetRevision: 0.13.3
+    helm:
+      parameters:
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
