@@ -113,7 +113,8 @@ jobs:
     
     - name: Build Docker image XXX
       run: |
-        docker build docker/fluentd
+        docker build \
+          docker/fluentd
         
     - name: Build Docker image
       run: |
