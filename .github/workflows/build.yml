@@ -116,16 +116,6 @@ jobs:
         docker build \
           --tag bfblog/data-factory-shell:latest \
           --tag bfblog/data-factory-shell:${GITHUB_SHA::8} \
-          --label org.opencontainers.image.created=${{ steps.shell.outputs.date }} \
-          --label org.opencontainers.image.authors="Markus Breuer" \
-          --label org.opencontainers.image.url=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} \
-          --label org.opencontainers.image.revision=${GITHUB_SHA##*/} \
-          --label org.opencontainers.image.title=data factory shell \
-          --label org.opencontainers.image.description= \
-          --label org.opencontainers.image.base.digest= \
-          --label org.opencontainers.image.vendor=www.bytefusion.de \
-          --label org.opencontainers.image.source=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} \
-          --label org.opencontainers.image.documentation="-" \
           docker/fluentd
         
     - name: Build Docker image
