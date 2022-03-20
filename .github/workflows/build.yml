@@ -55,10 +55,6 @@ jobs:
       
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-    
-    - name: Build Docker image XXX
-      run: |
-        docker build docker/fluentd
           
     - name: Build Docker image
       run: |
@@ -115,6 +111,10 @@ jobs:
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
     
+    - name: Build Docker image XXX
+      run: |
+        docker build docker/fluentd
+        
     - name: Build Docker image
       run: |
         docker build \
