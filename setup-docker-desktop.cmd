@@ -2,7 +2,7 @@ SET SCRIPT_DIR=%~dp0
 
 REM install nginx ingress controller
 kubectl.exe apply -f https://raw.githubusercontent.com/bfblog/bytefusion-cloud-platform/main/third-party/ingress-nginx/v1.1.1/install.yaml
-REM kubectl.exe wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
+kubectl.exe wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 
 REM install cert-manager
 REM kubectl.exe apply --validate=false -f https://raw.githubusercontent.com/bfblog/bytefusion-cloud-platform/main/third-party/cert-manager/v1.7.1/release.yaml
