@@ -116,6 +116,10 @@ jobs:
         docker build \
           --tag bfblog/data-factory-shell:latest \
           --tag bfblog/data-factory-shell:${GITHUB_SHA::8} \
+          --label org.opencontainers.image.created=${{ steps.shell.outputs.date }} \
+          --label org.opencontainers.image.authors="Markus Breuer" \
+          --label org.opencontainers.image.url=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} \
+          --label org.opencontainers.image.revision=${GITHUB_SHA##*/} \
           docker/fluentd
         
     - name: Build Docker image
