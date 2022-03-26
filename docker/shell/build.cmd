@@ -1,1 +1,1 @@
-docker build . --tag bfblog/dev-shell
+docker build . --tag bfblog/data-factory-shell:latest 
