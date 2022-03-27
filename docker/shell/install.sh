@@ -2,7 +2,7 @@
 echo "updating packages ..."
 export DEBIAN_FRONTEND=noninteractive
 
-apt install -y gnupg curl
+apt install -y gnupg curl maven
 
 echo "installing keptn CLI ..."
 curl -sL https://get.keptn.sh | bash
