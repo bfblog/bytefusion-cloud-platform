@@ -11,7 +11,7 @@ RUN dos2unix /root/install.sh && /root/install.sh
 
 WORKDIR /workspace
 
-RUN useradd -G 0 --home-dir /home/developer developer
+RUN useradd -G 0 --create-home --shell /bin/bash developer
 
 USER developer
 
