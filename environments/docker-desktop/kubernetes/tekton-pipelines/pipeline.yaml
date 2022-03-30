@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-with-parameters
+spec:
+  params:
+  tasks:
+    - name: git-clone
+      taskRef:
+        name: git-clone
+      params:
+        - name: url
+          value: https://github.com/bfblog/bytefusion-cloud-platform
+        - name: revision
+          value: work
+      workspaces:
+        - name: output
+          workspace: source
+  workspaces:
+  - name: source
+    description: The folder where we write the message to
+    
+        
+
