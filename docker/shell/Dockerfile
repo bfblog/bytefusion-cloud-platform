@@ -5,7 +5,7 @@ ADD install.sh /root/install.sh
 
 WORKDIR /root
 
-RUN apt update && apt upgrade && apt install -y dos2unix
+RUN apt update && apt upgrade -y && apt install -y dos2unix
 RUN chmod +x /root/install.sh 
 RUN dos2unix /root/install.sh && /root/install.sh
 
