@@ -4,6 +4,11 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt install -y gnupg curl maven
 
+echo "installing kubectl-slice ..."
+curl --output kubectl-slice.tar.gz -LO https://github.com/patrickdappollonio/kubectl-slice/releases/download/v1.2.1/kubectl-slice_1.2.1_linux_x86_64.tar.gz 
+tar xvzf kubectl-slice.tar.gz -C /usr/local/bin/ kubectl-slice
+rm kubectl-slice.tar.gz
+
 echo "installing keptn CLI ..."
 curl -sL https://get.keptn.sh | bash
 
