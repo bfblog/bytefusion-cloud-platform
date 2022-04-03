@@ -2,6 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: bytefusion-cloud-platform-workspace
+  namespace: tekton-pipelines
 spec:
   accessModes:
     - ReadWriteMany

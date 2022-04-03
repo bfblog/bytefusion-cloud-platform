@@ -1,7 +1,8 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: pipeline-with-parameters
+  name: bytefusion-data-platform
+  namespace: tekton-pipelines
 spec:
   params:
   tasks:
