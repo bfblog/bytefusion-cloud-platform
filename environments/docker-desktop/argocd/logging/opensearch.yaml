@@ -34,6 +34,7 @@ spec:
             cpu: "100m"
             memory: "100Mi"
           limits:
+            cpu: "1000m"
             memory: "700Mi"
         extraInitContainers: 
           - name: init-sysctl
@@ -58,7 +59,7 @@ spec:
             - hosts:
                 - elasticsearch.127.0.0.1.nip.io
     repoURL: https://opensearch-project.github.io/helm-charts/
-    targetRevision: 1.7.4
+    targetRevision: 1.10.0
   syncPolicy:
     automated: {}
     syncOptions:
