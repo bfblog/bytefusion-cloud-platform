@@ -16,6 +16,6 @@ spec:
           - --kubelet-insecure-tls
       parameters:
     repoURL: https://kubernetes-sigs.github.io/metrics-server/
-    targetRevision: 3.8.1
+    targetRevision: 3.8.2
   syncPolicy:
     automated: {}
