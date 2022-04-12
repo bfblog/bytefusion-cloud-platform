@@ -17,6 +17,17 @@ spec:
       workspaces:
         - name: output
           workspace: source
+    - name: buildah
+      taskRef:
+        name: buildah
+      params:
+        - name: CONTEXT
+          value: docker/shell
+        - name: IMAGE
+          value: bfblog/data-factory-shell:latest
+      workspaces:
+        - name: source
+          workspace: source
   workspaces:
   - name: source
     description: The folder where we write the message to
