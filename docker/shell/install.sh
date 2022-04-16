@@ -2,7 +2,17 @@
 echo "updating packages ..."
 export DEBIAN_FRONTEND=noninteractive
 
-apt install -y gnupg curl maven
+apt install -y gnupg curl maven bash-completion jq
+
+
+echo "installing yq ..."
+curl -o /tmp/yq_linux_amd64.tar.gz -LO https://github.com/mikefarah/yq/releases/download/v4.24.5/yq_linux_amd64.tar.gz 
+tar xzvf /tmp/yq_linux_amd64.tar.gz  -C /usr/bin ./yq_linux_amd64
+mv /usr/bin/yq_linux_amd64 /usr/bin/yq
+chown 0 /usr/bin/yq
+chgrp 0 /usr/bin/yq
+chmod +x /usr/bin/yq
+rm /tmp/yq_linux_amd64.tar.gz
 
 echo "installing kubectl-slice ..."
 curl --output kubectl-slice.tar.gz -LO https://github.com/patrickdappollonio/kubectl-slice/releases/download/v1.2.1/kubectl-slice_1.2.1_linux_x86_64.tar.gz 
@@ -15,9 +25,10 @@ curl -sL https://get.keptn.sh | bash
 echo "installing tektioncd CLI ..."
 curl -o tkn.tar.gz -LO https://github.com/tektoncd/cli/releases/download/v0.23.1/tkn_0.23.1_Linux_x86_64.tar.gz
 tar xvzf tkn.tar.gz -C /usr/local/bin/ tkn
+rm tkn.tar.gz
 
 echo "installing argocd ..."
-VERSION=v2.3.1 # Select desired TAG from https://github.com/argoproj/argo-cd/releases
+VERSION=v2.3.3 # Select desired TAG from https://github.com/argoproj/argo-cd/releases
 curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-linux-amd64
 chmod +x /usr/local/bin/argocd
 
@@ -38,4 +49,8 @@ apt-get install -y docker-ce docker-ce-cli containerd.io
 
 echo "cleaning cache ..."
 apt-get clean
- 
+
+tkn completion bash >> /completion.sh
+argocd completion bash >> /completion.sh
+kubectl completion bash >> /completion.sh
+

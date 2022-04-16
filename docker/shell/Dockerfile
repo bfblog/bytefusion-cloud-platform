@@ -11,7 +11,8 @@ RUN dos2unix /root/install.sh && /root/install.sh
 
 WORKDIR /workspace
 
-RUN useradd -G 0 --create-home --shell /bin/bash developer
+RUN useradd -G 0 --create-home --shell /bin/bash developer &&  \
+    echo "source /completion.sh" >> /home/developer/.bashrc
 
 USER developer
 
