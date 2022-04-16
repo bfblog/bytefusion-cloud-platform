@@ -8,7 +8,7 @@ REM install cert-manager
 REM kubectl.exe apply --validate=false -f https://raw.githubusercontent.com/bfblog/bytefusion-cloud-platform/main/third-party/cert-manager/v1.7.1/release.yaml
 
 REM install argocd
-kubectl.exe apply -n argocd -f https://raw.githubusercontent.com/bfblog/bytefusion-cloud-platform/main/third-party/argocd/v2.3.1/install.yaml
+kubectl.exe apply -n argocd -f https://raw.githubusercontent.com/bfblog/bytefusion-cloud-platform/main/third-party/argocd/v2.3.3/install.yaml
 kubectl.exe apply -n argocd -f %SCRIPT_DIR%\environments\docker-desktop\kubernetes\ --recursive=true
 
 kubectl.exe wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
