@@ -1,18 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: keptn
   namespace: argocd
   labels:
-    group: security
+    app-of-apps: keptn
+    group: continuous-integration
 spec:
   destination:
     namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: third-party/argocd/v2.2.5
+    path: environments/docker-desktop/argocd/keptn
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
-    targetRevision: HEAD
+    targetRevision: work
   syncPolicy:
     automated: {}
