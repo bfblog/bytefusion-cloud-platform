@@ -12,7 +12,7 @@ The most important feature is the ease of installation with optional installable
 * k8s metrics-server
 * in work: opensearch logging stack
 
-[release notes](./RELEASE-NOTES)
+[release notes](./RELEASE-NOTES.md)
 
 # prerequisite
 
