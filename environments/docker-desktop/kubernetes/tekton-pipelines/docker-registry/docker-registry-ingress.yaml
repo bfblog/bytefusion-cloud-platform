@@ -10,10 +10,6 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
-  tls:
-  - hosts:
-    - docker-registry.127.0.0.1.nip.io
-    secretName: argocd-secret # do not change, this is provided by Argo CD
   rules:
     - host: docker-registry.127.0.0.1.nip.io
       http:
