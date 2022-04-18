@@ -21,14 +21,23 @@ The most important feature is the ease of installation with optional installable
 
 Note: Operation on other operating systems is possible, but not tested so far.
 
-# setup
+# installation
 
 1. Execute script **setup-docker-desktop.cmd** to install bootstrap software. The script installs ArgoCD with an Ingress. Loading the containers can take several minutes. After successful execution, the ArgoCD passowrt is printed in the console. In the browser, ArgoCD is now accessible under the url argocd.127.0.0.1.nip.io.
 <br>
 Note: The service nip.io allows DNS-lookups to localhost. In this way, modification to hosts (windows: windows/system32/drivers/etc/hosts, linux: /etc/hosts) is not required. 
+
 2. ArgoCD builds the bootstrap loader and checks GIT repository for further components. The default profile configures the additional components.
 
+# developer shell
+The developer shell opens a shell on the current GIT workspace. Double-clicking the "developer-shell.cmd" script opens an Ubuntu environment and mounts the GIT working directory there under the path /workspace. The idea of the shell is simple: instead of installing utilities on the workspace, the tools come in a prepared container. Keyboard and screen are connected to the container and bring an always up-to-date environment.
 
+* argocd CLI + completion
+* kubectl + completion
+* tkn (tekton CLI) + completion
+* make
+* maven + java
+* openssl
 
 
 ```
