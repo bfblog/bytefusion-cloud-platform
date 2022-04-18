@@ -17,12 +17,25 @@ spec:
       workspaces:
         - name: output
           workspace: source
-    - name: buildah-xxx
+    - name: buildah-fluentd
       taskRef:
         name: buildah
       params:
         - name: CONTEXT
           value: docker/fluentd
+        - name: IMAGE
+          value: docker-registry:5000/bfblog/fluentd:latest
+        - name: TLSVERIFY
+          value: "false"
+      workspaces:
+        - name: source
+          workspace: source
+    - name: buildah-shell
+      taskRef:
+        name: buildah
+      params:
+        - name: CONTEXT
+          value: docker/shell
         - name: IMAGE
           value: docker-registry:5000/bfblog/fluentd:latest
         - name: TLSVERIFY
