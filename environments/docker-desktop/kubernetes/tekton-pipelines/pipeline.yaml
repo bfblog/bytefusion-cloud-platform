@@ -18,7 +18,7 @@ spec:
         - name: output
           workspace: source
     - name: buildah-fluentd
-      runAfter: 
+      from: 
         - git-clone
       taskRef:
         name: buildah
@@ -33,7 +33,7 @@ spec:
         - name: source
           workspace: source
     - name: buildah-shell
-      runAfter: 
+      from: 
         - git-clone
       taskRef:
         name: buildah
