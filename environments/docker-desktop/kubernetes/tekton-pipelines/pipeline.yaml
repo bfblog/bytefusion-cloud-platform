@@ -37,7 +37,7 @@ spec:
         - name: CONTEXT
           value: docker/shell
         - name: IMAGE
-          value: docker-registry:5000/bfblog/fluentd:latest
+          value: docker-registry:5000/bfblog/data-factory-shell:latest
         - name: TLSVERIFY
           value: "false"
       workspaces:
