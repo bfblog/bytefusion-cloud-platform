@@ -19,6 +19,9 @@ spec:
       - name: certs-vol
         secret:
           secretName: certs-secret
+      - name: htpasswd
+        configMap: 
+          name: docker-registry
       - name: registry-vol
         persistentVolumeClaim:
           claimName: docker-images-pvc
@@ -31,6 +34,8 @@ spec:
             value: "/certs/tls.crt"
           - name: REGISTRY_HTTP_TLS_KEY
             value: "/certs/tls.key"
+          - name: REGISTRY_AUTH_HTPASSWD_PATH
+            value: /auth/htpasswd
           ports:
             - containerPort: 5000
           volumeMounts:
@@ -38,6 +43,8 @@ spec:
             mountPath: /certs
           - name: registry-vol
             mountPath: /var/lib/registry
+          - name: htpasswd
+            mountPath: /auth
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

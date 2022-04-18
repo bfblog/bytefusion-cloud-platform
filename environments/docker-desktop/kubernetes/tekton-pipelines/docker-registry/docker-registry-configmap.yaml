@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: docker-registry
+  namespace: tekton-pipelines
+data:
+  htpasswd: |+
+    admin:$2y$05$4KxxibviV2Q9QckoHhHNtu4q.ZTZAMopxH1C1HDtdXGw3.iarIJfK
+
+
