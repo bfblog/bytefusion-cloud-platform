@@ -1,0 +1,1 @@
+docker build . --tag bfblog/data-factory-shell:latest 

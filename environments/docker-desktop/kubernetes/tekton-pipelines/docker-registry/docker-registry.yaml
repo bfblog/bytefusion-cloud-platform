@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-registry
+  namespace: tekton-pipelines
+  labels:
+    app: docker-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-registry
+  template:
+    metadata:
+      labels:
+        app: docker-registry
+    spec:
+      volumes:
+      - name: certs-vol
+        secret:
+          secretName: certs-secret
+      - name: registry-vol
+        persistentVolumeClaim:
+          claimName: docker-images-pvc
+      containers:
+        - image: registry:2
+          name: docker-registry
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: REGISTRY_HTTP_TLS_CERTIFICATE
+            value: "/certs/tls.crt"
+          - name: REGISTRY_HTTP_TLS_KEY
+            value: "/certs/tls.key"
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+          - name: certs-vol
+            mountPath: /certs
+          - name: registry-vol
+            mountPath: /var/lib/registry
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: docker-images-pvc
+  namespace: tekton-pipelines
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+   requests:
+    storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker-registry
+  namespace: tekton-pipelines
+spec:
+  selector:
+    app: docker-registry
+  ports:
+  - port: 5000
+    targetPort: 5000

@@ -17,7 +17,7 @@ spec:
   source:
     repoURL: https://github.com/bfblog/bytefusion-cloud-platform.git
     targetRevision: HEAD
-    path: argocd/environments/docker-desktop/bootstrap
+    path: environments/docker-desktop/argocd/bootstrap
 
     # directory
     directory:
