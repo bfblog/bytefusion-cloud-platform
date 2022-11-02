@@ -2,7 +2,7 @@
 echo "updating packages ..."
 export DEBIAN_FRONTEND=noninteractive
 
-apt install -y gnupg curl maven bash-completion jq
+apt-get install -y gnupg curl maven bash-completion jq apache2-utils
 
 
 echo "installing yq ..."
