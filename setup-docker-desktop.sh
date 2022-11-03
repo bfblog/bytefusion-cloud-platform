@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x 
+kubectl apply -f environments/docker-desktop/kubernetes/tekton-pipelines/ingress.yaml
 
 kubectl apply -f third-party/tekton/v0.41.0/release.yaml
 kubectl apply -f third-party/tekton-dashboard/v0.30.0/tekton-dashboard-release.yaml
