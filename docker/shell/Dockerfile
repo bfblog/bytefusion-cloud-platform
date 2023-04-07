@@ -1,22 +1,35 @@
-# fluentd/Dockerfile
-FROM ubuntu:latest
+FROM alpine:latest
 
-ADD install.sh /root/install.sh
+RUN apk update && apk upgrade 
+RUN apk add tree git curl coreutils make gnupg tzdata maven docker-cli
 
-WORKDIR /root
+# yq
+RUN curl --silent -L https://github.com/mikefarah/yq/releases/download/v4.33.2/yq_linux_amd64 --output /usr/local/bin/yq ; chmod +x /usr/local/bin/yq
 
-RUN apt update && apt upgrade -y && apt install -y dos2unix
-RUN chmod +x /root/install.sh 
-RUN dos2unix /root/install.sh && /root/install.sh
+# jq
+RUN curl --silent -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 --output /usr/local/bin/jq ; chmod +x /usr/local/bin/jq
+    
+# tekton-cli
+RUN set -x && export TEKTON_VERSION=$(curl -s  https://api.github.com/repos/tektoncd/cli/releases/latest | jq --raw-output '.tag_name' | sed 's/^.//') && \
+    curl --output /tmp/tkn.tar.gz --silent -L https://github.com/tektoncd/cli/releases/download/v$TEKTON_VERSION/tkn_${TEKTON_VERSION}_Linux_x86_64.tar.gz && \
+    tar xvzf /tmp/tkn.tar.gz -C /usr/local/bin/ tkn && \
+    rm /tmp/tkn.tar.gz 
 
+# argocd cli
+RUN curl --output /usr/local/bin/argocd --silent -L https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 && \
+    chmod +x /usr/local/bin/argocd
+    
+# kubectl
+RUN set -x && curl --silent -L https://dl.k8s.io/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl --output /usr/local/bin/kubectl && \
+    chmod +x /usr/local/bin/kubectl && \
+    rm -rf /tmp/*
+
+RUN curl --silent -L https://github.com/aquasecurity/trivy/releases/download/v0.38.3/trivy_0.38.3_Linux-64bit.tar.gz --output /tmp/trivy.tar.gz && \
+    tar xzvf /tmp/trivy.tar.gz -C /usr/local/bin/ trivy && \
+    rm -rf /tmp/*
+    
+RUN adduser --disabled-password --home /home/developer developer
+RUN addgroup developer root
+    
 WORKDIR /workspace
-
-RUN useradd -G 0 --create-home --shell /bin/bash developer &&  \
-    echo "source /completion.sh" >> /home/developer/.bashrc
-
 USER developer
-
-#RUN apt update && apt upgrade && apt install -y gnupg curl
-#RUN useradd -s /bin/bash -d /home/anonymous/ -m -G sudo anonymous 
-#RUN curl -sL https://get.keptn.sh | bash
-#RUN curl -LO https://github.com/tektoncd/cli/releases/download/v0.23.0/tektoncd-cli-0.23.0_Linux-64bit.deb && apt update && apt install -y tektoncd-cli

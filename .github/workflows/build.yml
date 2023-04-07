@@ -126,7 +126,7 @@ jobs:
           --label org.opencontainers.image.vendor="www.bytefusion.de" \
           --label org.opencontainers.image.source=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} \
           --label org.opencontainers.image.documentation="-" \
-          docker/shell
+          docker/developer-shell
         
     - name: Publish Docker image
       run: docker push bfblog/data-factory-shell:latest 
