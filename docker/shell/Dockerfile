@@ -27,7 +27,9 @@ RUN set -x && curl --silent -L https://dl.k8s.io/release/$(curl -s https://stora
 RUN curl --silent -L https://github.com/aquasecurity/trivy/releases/download/v0.38.3/trivy_0.38.3_Linux-64bit.tar.gz --output /tmp/trivy.tar.gz && \
     tar xzvf /tmp/trivy.tar.gz -C /usr/local/bin/ trivy && \
     rm -rf /tmp/*
-    
+
+RUN curl --silent -L https://get.helm.sh/helm-v3.11.1-linux-amd64.tar.gz --output /tmp/helm.tar.gz && tar xzvf /tmp/helm.tar.gz -C /tmp && cp /tmp/linux-amd64/helm /usr/local/bin/helm && rm -rf /tmp/*
+
 RUN adduser --disabled-password --home /home/developer developer
 RUN addgroup developer root
     
