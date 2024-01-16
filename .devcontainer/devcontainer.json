@@ -1,11 +1,57 @@
 {
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
-    "customizations": {
-        "vscode": {
-          "extensions": ["dbaeumer.vscode-eslint","scala-lang"]
-        }
-    }
-}
+  "name": "MeinDevContainer",
+  "dockerFile": "../Dockerfile",
 
+  // Optional: Fügen Sie Docker-Compose-Konfiguration hinzu, wenn erforderlich
+  // "dockerComposeFile": "docker-compose.yml",
+  // "service": "app",
+
+  // Konfiguriert die Verwendung von Docker-Compose oder Dockerfile
+  "context": "..",
+
+  // Führt Befehle nach dem Start des Containers aus
+  "postCreateCommand": "echo DevContainer wurde gestartet!",
+
+  // Portweiterleitungen für den DevContainer
+  "forwardPorts": [3000],
+
+  "customizations": {
+    // Spezifische Einstellungen für VS code.
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "shd101wyy.markdown-preview-enhanced",
+        "yzhang.markdown-all-in-one",
+        "ms-python.python",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-spring-initializr",
+        "ms-vscode.makefile-tools",
+        "redhat.java",
+        "editorconfig.editorconfig",
+        "aprilandjan.ascii-tree-generator",
+        "asciidoctor.asciidoctor-vscode",
+        "jebbs.plantuml",
+        "mebrahtom.plantumlpreviewer",
+        "ms-azuretools.vscode-docker",
+        "aquasecurityofficial.trivy-vulnerability-scanner"
+      ]
+    
+    }
+  },
+  // Montierte Volumes, falls erforderlich
+  "mounts": [
+    "source=C:/Users/Markus/Documents/GitHub/bytefusion-cloud-platform,target=/workspace,type=bind,consistency=cached"
+  ],
+
+  // Umgebungsvariablen für den DevContainer
+  "remoteEnv": {
+    "NODE_ENV": "development"
+  },
+
+  // Konfiguriert die VS Code-Remote-Extension
+  "remoteUser": "vscode"
+}

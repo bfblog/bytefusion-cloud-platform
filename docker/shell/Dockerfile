@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk update && apk upgrade 
-RUN apk add tree git curl coreutils make gnupg tzdata maven docker-cli
+RUN apk add tree git curl coreutils make gnupg tzdata maven docker-cli bash
 
 # yq
 RUN curl --silent -L https://github.com/mikefarah/yq/releases/download/v4.33.2/yq_linux_amd64 --output /usr/local/bin/yq ; chmod +x /usr/local/bin/yq
